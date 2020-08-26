@@ -34,7 +34,7 @@ router.get('/:id/steps', (req, res) => {
   const { id } = req.params;
 
   Schemes.findSteps(id)
-  .then(steps => {
+  .then((steps) => {
     if (steps.length) {
       res.json(steps);
     } else {
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
 
 router.post('/:id/steps', (req, res) => {
   const stepData = req.body;
-  const { id } = req.params; 
+  const { id } = req.params;
 
   Schemes.findById(id)
   .then(scheme => {
