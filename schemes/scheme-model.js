@@ -24,9 +24,13 @@ function findSteps(id) {
     .orderBy("step_number")
 }
 
-async function add(scheme) {
+function add(scheme) {
     return db("schemes")
-    .insert(scheme, "id")
+    .insert(scheme)
+}
+
+function addStep(stepData, id) {
+    return db("steps").join("schemes", "schemes.id", id).insert(stepData);
 }
 
 function update(changes, id) {
@@ -45,6 +49,7 @@ module.exports = {
     findById,
     findSteps,
     add,
+    addStep,
     update,
     remove
 }
