@@ -34,10 +34,9 @@ function addStep(stepData, id) {
 }
 
 function update(changes, id) {
-    db('schemes')
+    return db('schemes')
     .where("id", id)
     .update(changes)
-    return db("schemes").where("id", id)
 }
 
 function remove(id) {

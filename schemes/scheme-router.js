@@ -65,7 +65,7 @@ router.post('/:id/steps', (req, res) => {
   Schemes.findById(id)
   .then((scheme) => {
     if (scheme) {
-      Schemes.addStep(stepData, id)
+      Schemes.addStep({...stepData, scheme_id:id})
       .then((step) => {
         res.status(201).json(step);
       })
@@ -84,9 +84,11 @@ router.put('/:id', (req, res) => {
 
   Schemes.findById(id)
   .then(scheme => {
+
     if (scheme) {
       Schemes.update(changes, id)
       .then(updatedScheme => {
+        console.log(updatedScheme)
         res.json(updatedScheme);
       });
     } else {
@@ -94,6 +96,7 @@ router.put('/:id', (req, res) => {
     }
   })
   .catch (err => {
+    console.log(err)
     res.status(500).json({ message: 'Failed to update scheme' });
   });
 });
